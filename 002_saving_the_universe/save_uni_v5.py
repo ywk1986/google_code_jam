@@ -186,10 +186,12 @@ def write2file(file, case, n_switches):
 # ==============================================================================================================
     
 def main():
-    n_cases, case_list = read_data('A-large-practice.in')    # read input data.
+    # read input data.
+    n_cases, case_list = read_data('A-large-practice.in')    
     
     # create output file if it doesn't exist   
-    file = open('save_uni_v5_out.txt', 'w+')   
+    output_file_name = 'save_uni_v5_out_2.txt'
+    file = open(output_file_name, 'w+')   
     
     for case in range(1, n_cases+1):    # iterate over cases
         print('*******************************************************************************************')
@@ -204,7 +206,9 @@ def main():
 
         # write case_num and n_switches to output file.
         write2file(file, case, n_switches)
-    
+        
+        print('DONE. OUTPUT WRITTEN TO ' + str(output_file_name))
+
     file.close()
     
 if __name__ == '__main__':
