@@ -187,26 +187,23 @@ def write2file(file, case, n_switches):
     
 def main():
     # read input data.
-    n_cases, case_list = read_data('A-large-practice.in')    
-    
     # create output file if it doesn't exist   
-    output_file_name = 'save_uni_v5_out_2.txt'
+    n_cases, case_list = read_data('A-large-practice.in')    
+    output_file_name = 'save_uni_v5_out_2.txt'    
     file = open(output_file_name, 'w+')   
     
-    for case in range(1, n_cases+1):    # iterate over cases
+    # process 1 case at a time
+    # calculate engine with max step
+    # iterate over queries --> discard queries until max_engine reached.
+    # n_switches++ --> repeat loop.
+    # write case_num and n_switches to output file.
+    for case in range(1, n_cases+1):    
         print('*******************************************************************************************')
         print('currently processing case #' + str(case) + ' / ' + str(n_cases))
-        search_eng_list, query_list, case_list = get_one_case(case_list)    # get one case from input.
-
-        # calculate max engine
-        # iterate over list of queries --> discard queries until max_engine reached.
-        # n_switches++ --> repeat analysis.
+        search_eng_list, query_list, case_list = get_one_case(case_list)    
         n_switches = count_switches(search_eng_list, query_list)
         print_total_switches(n_switches)
-
-        # write case_num and n_switches to output file.
         write2file(file, case, n_switches)
-        
         print('DONE. OUTPUT WRITTEN TO ' + str(output_file_name))
 
     file.close()
